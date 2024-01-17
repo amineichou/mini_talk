@@ -1,17 +1,21 @@
-CFLAGS = -Wall -Wextra -Werror ft_printf/libftprintf.a libft/libft.a
-SRC = client.c server.c
-OBJ = client server
+CFLAGS = -Wall -Wextra -Werror
+UTILS = utils.c
+BUILT = server client
 CC = cc
 
-all: $(OBJ)
+all: $(BUILT)
 
-$(OBJ): 
-	$(CC) $(CFLAGS) $^ -o $@
+server : server.c
+	$(CC) $(CFLAGS) server.c $(UTILS) -o server
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+client : client.c
+	$(CC) $(CFLAGS) client.c $(UTILS) -o client
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(BUILT)
+
+fclean: clean all
 
 re: clean all
+
+.Phonny : server client clean re

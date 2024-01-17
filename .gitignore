@@ -1,4 +1,7 @@
+.gitignore
 *.sh
 *.o
 test.c
 *.out
+client
+server
