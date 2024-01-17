@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 21:28:55 by moichou           #+#    #+#             */
-/*   Updated: 2023/11/17 10:09:16 by moichou          ###   ########.fr       */
+/*   Created: 2024/01/12 19:09:44 by moichou           #+#    #+#             */
+/*   Updated: 2024/01/17 15:33:05 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef MINITALK_H
+#define MINITALK_H
 
-char	*ft_strrchr(const char *s, int c)
-{
-	int		i;
-	int		slen;
-	char	*last;
-	char	*source;
+#include "ft_printf/ft_printf.h"
+#include <signal.h>
 
-	i = 0;
-	source = (char *)s;
-	last = 0;
-	slen = ft_strlen(s);
-	while (i <= slen)
-	{
-		if (source[i] == (char)c)
-			last = &source[i];
-		i++;
-	}
-	return (last);
-}
+
+int	ft_atoi(const char *str);
+void logo_design(void);
+
+#endif
