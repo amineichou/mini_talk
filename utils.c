@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:29:54 by moichou           #+#    #+#             */
-/*   Updated: 2024/01/17 22:04:54 by moichou          ###   ########.fr       */
+/*   Updated: 2024/01/18 13:27:30 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include <unistd.h>
 
 int	ft_atoi(const char *str)
 {
@@ -66,6 +66,6 @@ void logo_design(void)
 	ft_printstr("████  ████ ██ ████   ██ ██        ██    ██   ██ ██      ██  ██  \n");
 	ft_printstr("██ ████ ██ ██ ██ ██  ██ ██        ██    ███████ ██      █████   \n");
 	ft_printstr("██  ██  ██ ██ ██  ██ ██ ██        ██    ██   ██ ██      ██  ██  \n");
-	ft_printstr("\033[1;31m██      ██ ██ ██   ████ ██        ██    ██   ██ ███████ ██   ██ \033[0m\n\n");
+	ft_printstr("██      ██ ██ ██   ████ ██        ██    ██   ██ ███████ ██   ██ \n");
 	ft_printstr("\n");
 }

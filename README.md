@@ -1,5 +1,11 @@
 # mini_talk
 
+### cd /minitalk
+### run : `make`
+### run : `./server`
+### in another terminal run : `./client <pid printed by server> "message"`
+
+
 ### 1. What is a SIGNAL ?
 - A signal is a software generated interrupt that is sent to a process by the OS because of when user press ctrl-c or another process tell something to this process.
 - A signal is basically a form of inter-process communication (IPC), that is used to notify a process about an event or a condition that has occured.
@@ -42,6 +48,8 @@ NULL, or a pointer to a sigaction structure that the function fills with informa
 0 = Success.
 -1 = An error occurred (errno is set).
 
-#### Signal() :
+### Signal() :
 - this function is a very basic function to catch signals, it takes also two arguments, the signal(signal number) we want to catch, and the function/handler that will be called once the signal is caught .
 
+### How Minitalk works ?
+check this article : https://m4nnb3ll.medium.com/first-time-to-work-with-signals-minitalk-a-42-the-network-project-8bae32237975

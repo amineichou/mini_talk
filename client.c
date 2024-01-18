@@ -6,11 +6,12 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 22:01:40 by moichou           #+#    #+#             */
-/*   Updated: 2024/01/17 15:31:48 by moichou          ###   ########.fr       */
+/*   Updated: 2024/01/18 13:43:03 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include <signal.h>
+#include "./utils.c"
 
 static void send_byte(pid_t pid, char c)
 {

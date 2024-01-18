@@ -5,11 +5,11 @@ CC = cc
 
 all: $(BUILT)
 
-server : server.c
-	$(CC) $(CFLAGS) server.c $(UTILS) -o server
+server : server.c $(UTILS)
+	$(CC) $(CFLAGS) server.c -o server
 
-client : client.c
-	$(CC) $(CFLAGS) client.c $(UTILS) -o client
+client : client.c $(UTILS)
+	$(CC) $(CFLAGS) client.c -o client
 
 clean:
 	rm -f $(BUILT)

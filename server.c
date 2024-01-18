@@ -6,11 +6,12 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:06:20 by moichou           #+#    #+#             */
-/*   Updated: 2024/01/17 22:22:26 by moichou          ###   ########.fr       */
+/*   Updated: 2024/01/18 12:48:45 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include <signal.h>
+#include "./utils.c"
 
 static void signal_handler(int signum)
 {
