@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:06:20 by moichou           #+#    #+#             */
-/*   Updated: 2024/01/18 12:48:45 by moichou          ###   ########.fr       */
+/*   Updated: 2024/01/18 21:47:20 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void signal_handler(int signum)
 
 int main(void)
 {
-	struct sigaction action;
+	struct sigaction action; 
 	pid_t pid;
 
 	pid = getpid();
@@ -50,7 +50,6 @@ int main(void)
 		ft_printstr("Failed to change SIGUSR1's behavior");
 	if (sigaction(SIGUSR2, &action, NULL) == -1)
 		ft_printstr("Failed to change SIGUSR2's behavior");
-
 	while (1)
 		pause();
 	return 0;

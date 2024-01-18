@@ -18,4 +18,4 @@ fclean: clean all
 
 re: clean all
 
-.Phonny : server client clean re
+.PHONY : server client clean re
