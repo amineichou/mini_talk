@@ -91,7 +91,7 @@ while (true)
 - https://www.math.stonybrook.edu/~ccc/dfc/dfc/signals.html#:~:text=A%20signal%20is%20a%20message,send%20it%20a%20SIGHUP%20signal
 - https://www.tutorialspoint.com/unix/unix-signals-traps.htm
 - https://en.wikipedia.org/wiki/C_signal_handling
-- the linux programming interface
+- the linux programming interface (book)
 
 ### How Minitalk works ?
 check this article : https://m4nnb3ll.medium.com/first-time-to-work-with-signals-minitalk-a-42-the-network-project-8bae32237975
