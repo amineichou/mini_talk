@@ -1,10 +1,13 @@
-#### mini_talk
+### mini_talk
 
-### get started :
-### cd /minitalk
-### run : `make`
-### run : `./server`
-### in another terminal run : `./client <pid printed by server> "message"`
+## get started :
+```
+cd /minitalk
+make
+./server
+(in another terminal)
+./client <pid printed by server> "message"
+```
 
 
 ### 1. What is a SIGNAL ?
