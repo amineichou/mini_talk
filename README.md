@@ -49,7 +49,7 @@ Signal number have symbolic names. For example SIGCHLD is number of the signal s
 ### 2. Kill(): `to send a signal`
 - Kill() is system call has two arguments, the pid(process ID) and the signal(signal number), we can use it to send the signal we want to the process we want which is identified by a pid.
 
-### 3. Sigaction or Signal() ? `both for are to catch a signal. but sigaction is more advanced utility`
+### 3. Sigaction or Signal() ? `both are used to catch a signal, handle it. but sigaction is more advanced utility`
 #### Sigaction :
 - The sigaction structure specifies how to handle a signal.
 - Signal handlers and actions are defined for the process and affect all threads in the process. For example, if one thread ignores a signal, then all threads ignore the signal.

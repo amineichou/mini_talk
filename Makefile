@@ -1,23 +1,22 @@
 FLAGS = -Wall -Wextra -Werror
 CC = cc
-NAME = server client
-SRC = server.c client.c
+SERVER = server
+CLIENT = client
+SERVER_SRC = server.c
+CLIENT_SRC = client.c
 UTILS = utils.c
 
-all: $(NAME)
+all: $(SERVER) $(CLIENT)
 
-$(NAME): $(SRC:.c=.o) $(UTILS:.c=.o)
-    $(CC) $(FLAGS) server.o utils.o -o server
-    $(CC) $(FLAGS) client.o utils.o -o client
+$(SERVER): $(SERVER_SRC) $(UTILS) minitalk.h
+	$(CC) $(FLAGS) $(SERVER_SRC) $(UTILS) -o $(SERVER)
 
-%.o: %.c
-    $(CC) $(FLAGS) -c $< -o $(basename $@)
+$(CLIENT): $(CLIENT_SRC) $(UTILS) minitalk.h
+	$(CC) $(FLAGS) $(CLIENT_SRC) $(UTILS) -o $(CLIENT)
 
 clean:
-    rm -f $(NAME) *.o
+	rm -f $(SERVER) $(CLIENT)
 
-fclean: clean
+re: clean all
 
-re: fclean all
-
-.PHONY: all clean fclean re
+.PHONY: all clean re
