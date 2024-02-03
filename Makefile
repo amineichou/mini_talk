@@ -1,21 +1,23 @@
-CFLAGS = -Wall -Wextra -Werror
-UTILS = utils.c
-BUILT = server client
+FLAGS = -Wall -Wextra -Werror
 CC = cc
+NAME = server client
+SRC = server.c client.c
+UTILS = utils.c
 
-all: $(BUILT)
+all: $(NAME)
 
-server : server.c $(UTILS)
-	$(CC) $(CFLAGS) server.c -o server
+$(NAME): $(SRC:.c=.o) $(UTILS:.c=.o)
+    $(CC) $(FLAGS) server.o utils.o -o server
+    $(CC) $(FLAGS) client.o utils.o -o client
 
-client : client.c $(UTILS)
-	$(CC) $(CFLAGS) client.c -o client
+%.o: %.c
+    $(CC) $(FLAGS) -c $< -o $(basename $@)
 
 clean:
-	rm -f $(BUILT)
+    rm -f $(NAME) *.o
 
-fclean: clean all
+fclean: clean
 
-re: clean all
+re: fclean all
 
-.PHONY : server client clean re
+.PHONY: all clean fclean re

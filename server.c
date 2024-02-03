@@ -5,24 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 10:06:20 by moichou           #+#    #+#             */
-/*   Updated: 2024/01/18 21:47:20 by moichou          ###   ########.fr       */
+/*   Created: 2024/02/01 22:13:43 by moichou           #+#    #+#             */
+/*   Updated: 2024/02/03 18:04:02 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include "./utils.c"
+#include "minitalk.h"
 
-static void signal_handler(int signum)
+void	signal_handler(int signum, siginfo_t *info, void *not_used)
 {
-	static int count;
-	static char byte;
-	int bit = 0;
+	static int		count;
+	static char		byte;
+	int				bit;
+	static pid_t	old_pid;
 
+	bit = 0;
+	if (old_pid == 0)
+		old_pid = info->si_pid;
+	if (old_pid != info->si_pid)
+	{
+		count = 0;
+		byte = 0;
+		old_pid = info->si_pid;
+	}
 	if (signum == SIGUSR1)
 		bit = 1;
-	else if (signum == SIGUSR2)
-		bit = 0;
 	byte = (byte << 1) | bit;
 	count++;
 	if (count == 8)
@@ -31,26 +38,24 @@ static void signal_handler(int signum)
 		count = 0;
 		byte = 0;
 	}
+	(void)not_used;
 }
 
-int main(void)
+int	main(void)
 {
-	struct sigaction action; 
-	pid_t pid;
+	pid_t				pid;
+	struct sigaction	action;
 
 	pid = getpid();
-	logo_design();
-	ft_printstr("PID is : \033[1;31m\033[0m");
 	ft_putnbr(pid);
-	ft_printstr("\n\n");
-	action.sa_handler = signal_handler;
-	action.sa_flags = 0;
-	action.sa_mask = 0;
+	ft_putstr("\n");
+	action.sa_sigaction = &signal_handler;
+	action.sa_flags = SA_SIGINFO;
 	if (sigaction(SIGUSR1, &action, NULL) == -1)
-		ft_printstr("Failed to change SIGUSR1's behavior");
+		ft_putstr("Failed to change SIGUSR1's behavior");
 	if (sigaction(SIGUSR2, &action, NULL) == -1)
-		ft_printstr("Failed to change SIGUSR2's behavior");
+		ft_putstr("Failed to change SIGUSR2's behavior");
 	while (1)
 		pause();
-	return 0;
+	return (0);
 }

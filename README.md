@@ -22,6 +22,20 @@ Signal number have symbolic names. For example SIGCHLD is number of the signal s
 #define SIGABRT 6   /* Abort. */
 ```
 
+### pid (process id) :
+- `Process ID Range:` Process IDs are typically assigned by the operating system when a process is created. They are positive integers ranging from 1 to a maximum value determined by the system's architecture and configuration. The maximum PID value can vary between systems but is often limited by the size of the PID data type (e.g., 16-bit, 32-bit, or 64-bit).
+
+- `PID 0:` PID 0 is reserved for the scheduler process, also known as the "swapper" or "scheduler process." This process is responsible for managing system resources and scheduling tasks.
+
+- `PID 1:` PID 1 is typically assigned to the init process, which is the first process started by the kernel during system boot. The init process is responsible for starting and managing other processes, including system services and daemons.
+
+- `Negative PIDs:` Negative values are not used to represent processes in Unix-like systems. If you attempt to use a negative value as a process ID, it would be interpreted as an error or an invalid PID. 
+
+- we use the function getpid() to get the process id.
+```
+ pid_t pid = getpid();
+```
+
 ### 2. Kill(): `to send a signal`
 - Kill() is system call has two arguments, the pid(process ID) and the signal(signal number), we can use it to send the signal we want to the process we want which is identified by a pid.
 
@@ -50,6 +64,20 @@ NULL, or a pointer to a sigaction structure that the function fills with informa
 
 ### Signal() :
 - this function is a very basic function to catch signals, it takes also two arguments, the signal(signal number) we want to catch, and the function/handler that will be called once the signal is caught .
+
+### Pause() :
+- In C, the function pause() typically suspends the calling process until a signal is received. The loop while (true) pause(); creates an infinite loop that continuously suspends the process until a signal is received.
+
+```
+while (true)
+    pause();
+```
+
+`while (true)`: This sets up an infinite loop because the condition true is always true.
+`pause()`: This function causes the calling process to sleep until a signal is received. The process will remain suspended until a signal interrupts the execution of pause().
+
+### Resources :
+- https://www.math.stonybrook.edu/~ccc/dfc/dfc/signals.html#:~:text=A%20signal%20is%20a%20message,send%20it%20a%20SIGHUP%20signal
 
 ### How Minitalk works ?
 check this article : https://m4nnb3ll.medium.com/first-time-to-work-with-signals-minitalk-a-42-the-network-project-8bae32237975

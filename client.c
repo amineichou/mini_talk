@@ -5,72 +5,63 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 22:01:40 by moichou           #+#    #+#             */
-/*   Updated: 2024/01/18 21:51:43 by moichou          ###   ########.fr       */
+/*   Created: 2024/02/01 22:13:26 by moichou           #+#    #+#             */
+/*   Updated: 2024/02/03 18:04:31 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include "./utils.c"
+#include "minitalk.h"
 
-int received = 1;
-
-static void send_byte(pid_t pid, char c)
+void	send_byte(pid_t pid, char byte)
 {
-    int bit;
-    int i;
+	int	bit;
+	int	i;
 
-    bit = 0;
-    i = 7;
-    while (i >= 0)
-    {
-        if ((bit = (c >> i) & 1) == 1)
-        {
-            if (kill(pid, SIGUSR1) == -1)
-            {
-                received = 0;
-                break;
-            }
-        }
-        else if ((bit = (c >> i) & 1) == 0)
-        {
-            if (kill(pid, SIGUSR2) == -1)
-            {
-                received = 0;
-                break;
-            }
-        }
-        usleep(420);
-        i--;
-    }
+	i = 7;
+	while (i >= 0)
+	{
+		bit = (byte >> i) & 1;
+		if (bit == 1)
+		{
+			if (kill(pid, SIGUSR1) == -1)
+				ft_putstr("Error : can't send signal to this process\n");
+		}
+		else if (bit == 0)
+		{
+			if (kill(pid, SIGUSR2) == -1)
+				ft_putstr("Error : can't send signal to this process\n");
+		}
+		usleep(420);
+		i--;
+	}
 }
 
-static void send_message(pid_t pid, char *str)
+void	send_msg(pid_t pid, char *msg)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-    {
-        send_byte(pid, str[i]);
-        if (received == 0)
-        {
-            ft_printstr("error! not received\n");
-            break;
-        }
-        i++;
-    }
+	i = 0;
+	while (msg[i])
+	{
+		send_byte(pid, msg[i]);
+		i++;
+	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    if (ac != 3)
-        return (0);
-    int pid =  ft_atoi(av[1]);
-    if (pid == -1 || pid == 0)
-    {
-        ft_printstr("error process id\n");
-        return (0);
-    }
-    send_message(pid, av[2]);
+	int	pid;
+
+	if (ac == 3)
+	{
+		pid = ft_atoi(av[1]);
+		if (pid == 0 || pid == -1)
+		{
+			ft_putstr("Bad pid\n");
+			return (0);
+		}
+		send_msg(pid, av[2]);
+	}
+	else
+		ft_putstr("Error : no valid args");
 }
