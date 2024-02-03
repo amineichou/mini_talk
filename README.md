@@ -1,5 +1,6 @@
-# mini_talk
+#### mini_talk
 
+### get started :
 ### cd /minitalk
 ### run : `make`
 ### run : `./server`
