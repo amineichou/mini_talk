@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:15:31 by moichou           #+#    #+#             */
-/*   Updated: 2024/02/06 20:30:39 by moichou          ###   ########.fr       */
+/*   Updated: 2024/02/06 20:36:06 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	ft_print_logo(pid_t pid)
 	ft_putstr("██  ██  ██ ██ ██  ██ ██ ██        ██    ██   ██ ██      ██  ██ \n");
 	usleep(100000);
 	ft_putstr("██      ██ ██ ██   ████ ██        ██    ██   ██ ███████ ██   ██\n\n");
+    ft_putstr("\033[0;34mBy : Mohamed Amine ichou\n\n");
 	ft_putstr("\033[0;31mPID : ");
 	ft_putnbr(pid);
 	ft_putstr("\033[0m\n\n");
