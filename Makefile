@@ -9,7 +9,7 @@ SERVER_OBJ = $(SERVER_SRC:.c=.o)
 CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
 UTILS_OBJ = $(UTILS_SRC:.c=.o)
 
-all: $(SERVER) $(CLIENT)
+all: $(SERVER) $(CLIENT) 
 
 $(SERVER): $(SERVER_OBJ) $(UTILS_OBJ)
 	$(CC) $(SERVER_OBJ) $(UTILS_OBJ) -o $(SERVER)
