@@ -15,7 +15,6 @@ make
 ./client <pid printed by server> "message"
 ```
 
-
 ### 1. What is a SIGNAL ?
 - A signal is a software generated interrupt that is sent to a process by the OS because of when user press ctrl-c or another process tell something to this process.
 - A signal is basically a form of inter-process communication (IPC), that is used to notify a process about an event or a condition that has occured.
