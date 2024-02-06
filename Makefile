@@ -4,19 +4,28 @@ SERVER = server
 CLIENT = client
 SERVER_SRC = server.c
 CLIENT_SRC = client.c
-UTILS = utils.c
+UTILS_SRC = utils.c
+SERVER_OBJ = $(SERVER_SRC:.c=.o)
+CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
+UTILS_OBJ = $(UTILS_SRC:.c=.o)
 
 all: $(SERVER) $(CLIENT)
 
-$(SERVER): $(SERVER_SRC) $(UTILS) minitalk.h
-	$(CC) $(FLAGS) $(SERVER_SRC) $(UTILS) -o $(SERVER)
+$(SERVER): $(SERVER_OBJ) $(UTILS_OBJ)
+	$(CC) $(SERVER_OBJ) $(UTILS_OBJ) -o $(SERVER)
 
-$(CLIENT): $(CLIENT_SRC) $(UTILS) minitalk.h
-	$(CC) $(FLAGS) $(CLIENT_SRC) $(UTILS) -o $(CLIENT)
+$(CLIENT): $(CLIENT_OBJ) $(UTILS_OBJ)
+	$(CC) $(CLIENT_OBJ) $(UTILS_OBJ) -o $(CLIENT)
+
+%.o: %.c minitalk.h
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
+	rm -f server.o client.o utils.o
+
+fclean: clean
 	rm -f $(SERVER) $(CLIENT)
 
 re: clean all
 
-.PHONY: all clean re
+.PHONY: all clean fclean re

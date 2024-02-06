@@ -6,13 +6,13 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:13:43 by moichou           #+#    #+#             */
-/*   Updated: 2024/02/03 18:04:02 by moichou          ###   ########.fr       */
+/*   Updated: 2024/02/06 20:23:59 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	signal_handler(int signum, siginfo_t *info, void *not_used)
+void	signal_handler(int signum, siginfo_t *info, void *context)
 {
 	static int		count;
 	static char		byte;
@@ -38,7 +38,7 @@ void	signal_handler(int signum, siginfo_t *info, void *not_used)
 		count = 0;
 		byte = 0;
 	}
-	(void)not_used;
+	(void)context; // not used
 }
 
 int	main(void)
@@ -47,8 +47,7 @@ int	main(void)
 	struct sigaction	action;
 
 	pid = getpid();
-	ft_putnbr(pid);
-	ft_putstr("\n");
+	ft_print_logo(pid); // print minitalk logo and process id
 	action.sa_sigaction = &signal_handler;
 	action.sa_flags = SA_SIGINFO;
 	if (sigaction(SIGUSR1, &action, NULL) == -1)
