@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:15:31 by moichou           #+#    #+#             */
-/*   Updated: 2024/02/06 19:16:03 by moichou          ###   ########.fr       */
+/*   Updated: 2024/02/06 20:30:39 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,13 @@ void	ft_puterror(char *str)
 	int	i;
 
 	i = 0;
+    ft_putstr("\033[0;31m");
 	while (str[i])
 	{
 		write(2, &str[i], 1);
 		i++;
 	}
+    ft_putstr("\033[0m");
 	exit (1);
 }
 
@@ -110,7 +112,7 @@ void	ft_print_logo(pid_t pid)
 	ft_putstr("██  ██  ██ ██ ██  ██ ██ ██        ██    ██   ██ ██      ██  ██ \n");
 	usleep(100000);
 	ft_putstr("██      ██ ██ ██   ████ ██        ██    ██   ██ ███████ ██   ██\n\n");
-	ft_putstr("PID : ");
+	ft_putstr("\033[0;31mPID : ");
 	ft_putnbr(pid);
-	ft_putstr("\n\n");
+	ft_putstr("\033[0m\n\n");
 }
